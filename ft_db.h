@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 01:00:21 by cfu               #+#    #+#             */
-/*   Updated: 2017/04/30 22:50:22 by cfu              ###   ########.fr       */
+/*   Updated: 2017/05/01 19:30:12 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@
 # include <stdlib.h>
 
 void		null_term(char *str);
-int			line_count(char* table);
+int			line_count(char *table);
+int			open_check(char *table);
+int			line_check(char *table, char *entry);
 int			create_table(void);
-int			update_entry(char *table, int line, char *replace);
+int			update_helper(char *table, char *str, size_t len);
+int			insert_helper(char *table, char *str, size_t len);
+int			update_entry(char *table, char *data, int line);
 int			append_entry(char *table);
-int			insert_entry(char *table);
+int			insert_entry(char *table, char *data, int line);
 int			delete_entry(char *table, int line);
 void		modify_choices(char *table, char *command);
 int			modify_table(void);

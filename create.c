@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 00:49:58 by cfu               #+#    #+#             */
-/*   Updated: 2017/04/28 01:05:04 by cfu              ###   ########.fr       */
+/*   Updated: 2017/04/30 21:56:32 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		create_table(void)
 	printf("Gimme dem classes/categories separated by commas\n");
 	fgets(str, 100, stdin);
 	null_term(str);
-	fprintf(fp, "[%s]", str);
+	fprintf(fp, "[%s]\n", str);
 	fclose(fp);
 	printf("anything else you'd like to do?\n");
 	fgets(moar, 5, stdin);
