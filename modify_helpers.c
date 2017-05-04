@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 00:54:07 by cfu               #+#    #+#             */
-/*   Updated: 2017/05/01 20:33:05 by cfu              ###   ########.fr       */
+/*   Updated: 2017/05/04 00:33:10 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		update_entry(char *table, char *data, int line)
 
 	count = 1;
 	str = NULL;
-	len = 0;
+	len = 100;
 	fp = fopen(table, "r");
 	fp2 = fopen(".tmp.tab", "w+");
 	while(getline(&str, &len, fp) > 0)
@@ -74,7 +74,7 @@ int		insert_entry(char *table, char *data, int line)
 	int			count;
 
 	str = NULL;
-	len = 0;
+	len = 100;
 	count = 0;
 	fp = fopen(table, "r");
 	fp2 = fopen(".tmp.tab", "w+");

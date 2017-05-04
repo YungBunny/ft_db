@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 00:47:56 by cfu               #+#    #+#             */
-/*   Updated: 2017/04/28 12:44:00 by cfu              ###   ########.fr       */
+/*   Updated: 2017/05/04 00:47:17 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int		choices(void)
 	int		going;
 
 	going = 0;
-	printf("Didja wanna \x1b[33m(1)create\x1b[0m, ");
-	printf("\x1b[36m(2)modify\x1b[0m, " "\x1b[31m(3)delete\x1b[0m, ");
+	printf("Didja wanna \x1b[33m(1)create a table\x1b[0m, ");
+	printf("\x1b[36m(2)modify an entry\x1b[0m, ");
+	printf("\x1b[31m(3)delete a table\x1b[0m, ");
 	printf("or \x1b[32m(4)search data?\x1b[0m ");
 	printf("Gimme a number.\n");
 	fgets(str, 5, stdin);

@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 00:51:44 by cfu               #+#    #+#             */
-/*   Updated: 2017/05/01 20:32:27 by cfu              ###   ########.fr       */
+/*   Updated: 2017/05/04 00:34:51 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,14 @@
 int		update_helper(char *table, char *str, size_t len)
 {
 	FILE	*fp;
-	char	entry[5];
+	char	*row;
 	char	data[100];
 	int		line;
 
 	str = NULL;
 	len = 100;
-	printf("Here are the categories of this table. There are x entries.\n");
-	printf("Which entry would you like to edit?");
-	printf("Enter row #\n");
-	fgets(entry, 5, stdin);
-	null_term(entry);
-	if ((line = line_check(table, entry)) == 0)
+	row = choose_row_update(table, str, len);
+	if ((line = line_check(table, row)) == 0)
 		return (0);
 	fp = fopen(table, "r");
 	printf("Gimme your data in following format, ");
@@ -37,6 +33,13 @@ int		update_helper(char *table, char *str, size_t len)
 	fgets(data, 100, stdin);
 	null_term(data);
 	fclose(fp);
+	if (element_count(str) != element_count(data))
+	{
+		if (retry() == 1)
+			update_helper(table, str, len);
+		else if (retry() == -1 || retry() == 0)
+			return (0);
+	}
 	update_entry(table, data, line);
 	return (0);
 }
@@ -44,18 +47,14 @@ int		update_helper(char *table, char *str, size_t len)
 int		insert_helper(char *table, char *str, size_t len)
 {
 	FILE	*fp;
-	char	entry[5];
+	char	*row;
 	char	data[100];
 	int		line;
 
 	str = NULL;
 	len = 0;
-	printf("Here are the categories of this table. There are x entries.\n");
-	printf("After which entry would ya like to make an insert? ");
-	printf("Enter row #\n");
-	fgets(entry, 5, stdin);
-	null_term(entry);
-	if ((line = line_check(table, entry)) == 0)
+	row = choose_row_insert(table, str, len);
+	if ((line = line_check(table, row)) == 0)
 		return (0);
 	fp = fopen(table, "r");
 	printf("Gimme your data in following format, ");
@@ -72,15 +71,19 @@ int		insert_helper(char *table, char *str, size_t len)
 
 int		delete_helper(char *table)
 {
-	char	entry[5];
+	char	entry[10];
+	char	*row;
 	int		line;
+	int		entries;
 
-	printf("Here are the categories of this table. There are x entries.\n");
-	printf("After which entry would ya like to delete? ");
+	entries = entries_total(table);
+	printf("%s%i%s\n", "There are ", entries, " entries.");
+	printf("Which entry would ya like to delete? ");
 	printf("Enter row #\n");
-	fgets(entry, 5, stdin);
+	fgets(entry, 10, stdin);
 	null_term(entry);
-	if ((line = line_check(table, entry)) == 0)
+	row = strdup(entry);
+	if ((line = line_check(table, row)) == 0)
 		return (0);
 	delete_entry(table, line);
 	return (0);
